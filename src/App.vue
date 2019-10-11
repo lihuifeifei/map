@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <el-container v-if="$route.meta.keepAlive" direction="vertical">
+            <keep-alive>
+                <el-menu
+                        :default-active="this.$route.path"
+                        router
+                        class="el-menu-demo"
+                        mode="horizontal"
+
+                        theme="dark">
+                    <el-menu-item
+                            v-for="(item,i) in navList"
+                            :key="i"
+                            :index="item.name">
+                        {{item.navItem}}
+                    </el-menu-item>
+                </el-menu>
+            </keep-alive>
+            <el-main>
+                <router-view/>
+            </el-main>
+        </el-container>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+<script>
+    export default {
+        data() {
+            return {
+                navList:[
+                    {name:'/map_spot',navItem:'坐标点'},
+                    {name:'/map_line',navItem:'轨迹'},
+
+                ]
+            };
+        },
+        methods: {
+
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

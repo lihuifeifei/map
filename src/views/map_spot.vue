@@ -15,22 +15,22 @@
         data(){
             return{
                 center: {lng: 0, lat: 0},
-                zoom: 3,
+                zoom: 20,
                 position:{lng: 0, lat: 0}
             }
         },
         methods:{
             handler ({BMap, map}) {
                 console.log(BMap, map);
-                this.zoom = 15;
+                this.zoom = 20;
                  setInterval(()=>{
                      this.$axios.get('http://localhost:8080/getData')
                          .then(res=>{
                            console.log(res.data);
-                           this.center.lng = res.data.longitude;
-                           this.center.lat = res.data.latitude;
-                           this.position.lng = res.data.longitude;
-                           this.position.lat = res.data.latitude;
+                           this.center.lng = res.data.latitude;
+                           this.center.lat = res.data.longitude;
+                           this.position.lng = res.data.latitude;
+                           this.position.lat = res.data.longitude;
                          })
                          .catch(err=>{
                            console.log(err)

@@ -15,15 +15,15 @@ export default new Router({
                 keepAlive:false
             }
         },
-        {
+/*        {
             path: '/map_spot',
             name: 'map_spot',
             component:  Map_spot,
             meta:{
                 keepAlive:true
             }
-        },
-       /* {
+        },*/
+        {
             path: '/map_spot',
             name: 'map_spot',
             meta:{
@@ -32,8 +32,8 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/!* webpackChunkName: "about" *!/ './views/map_spot.vue')
-        },*/
+            component: () => import(/* webpackChunkName: "about" */ './views/map_spot.vue')
+        },
         {
             path: '/map_line',
             name: 'map_line',

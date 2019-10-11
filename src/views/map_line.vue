@@ -8,6 +8,8 @@
         <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
         <!--        画折线-->
         <bm-polyline :path="polylinePath" stroke-color="black" :stroke-opacity="1" :stroke-weight="3"  @lineupdate="updatePolylinePath"></bm-polyline>
+        <!--    标记点控件-->
+        <bm-marker :position="position"></bm-marker>
     </baidu-map>
 </template>
 
@@ -16,46 +18,37 @@
         name: "map_line",
         data(){
             return{
-                zoom: 3,
+                zoom: 20,
                 center: {lng: 0, lat: 0},
+                position:{lng: 0, lat: 0},
                 polylinePath: []
             }
         },
         methods: {
             handler ({BMap, map}) {
                 console.log(BMap, map);
-                this.zoom = 15;
+                this.zoom = 20;
                  setInterval(()=>{
                  this.$axios.get('http://localhost:8080/getData')
                      .then(res=>{
                        console.log(res.data);
                        this.center.lng = res.data.latitude;
                        this.center.lat = res.data.longitude;
+                       this.position.lng = res.data.latitude;
+                       this.position.lat = res.data.longitude;
+                       let obj={};
+                       obj.lng = res.data.latitude;
+                       obj.lat = res.data.longitude;
+                       this.polylinePath.push(obj);
                      })
                      .catch(err=>{
                        console.log(err)
                      })
              },1000);
             },
+            updatePolylinePath(e){
 
-            updatePolylinePath (e) {
-                setInterval(()=>{
-                    this.$axios.get('http://localhost:8080/getData')
-                        .then(res=>{
-                            console.log(res);
-                            let obj={};
-                            obj.lng = res.data.latitude;
-                            obj.lat = res.data.longitude;
-                            console.log(obj);
-                            this.polylinePath.push(obj);
-                            this.polylinePath = e.target.getPath();
-                        })
-                        .catch(err=>{
-                            console.log(err);
-                        });
-                },1000);
-
-            },
+            }
 
         },
         mounted() {

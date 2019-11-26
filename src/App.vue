@@ -7,7 +7,6 @@
                         router
                         class="el-menu-demo"
                         mode="horizontal"
-
                         theme="dark">
                     <el-menu-item
                             v-for="(item,i) in navList"
@@ -33,7 +32,6 @@
                 navList:[
                     {name:'/map_spot',navItem:'坐标点'},
                     {name:'/map_line',navItem:'轨迹'},
-
                 ]
             };
         },

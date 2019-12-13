@@ -142,42 +142,49 @@
             handler ({BMap, map}) {
                 console.log(BMap, map);
                 this.zoom = 20;
-            /*     setInterval(()=>{
-                     this.$axios.get('http://localhost:8080/getData')
+                this.$axios.get('/getData')
+                    .then(res=>{
+                        this.center.lng = res.data.latitude;
+                        this.center.lat = res.data.longitude;
+                    })
+                    .catch(error=>{
+                        console.log(error);
+                    });
+                 setInterval(()=>{
+                     this.$axios.get('/getData')
                          .then(res=>{
                            console.log(res.data);
-                           this.center.lng = res.data.latitude;
-                           this.center.lat = res.data.longitude;
                            if(res.data.type==='a'){
-                               this.position.lng = res.data.latitude;
-                               this.position.lat = res.data.longitude;
-                           }else {
                                this.position1.lng = res.data.latitude;
                                this.position1.lat = res.data.longitude;
+                           }else if(res.data.type==='b'){
+                               this.position2.lng = res.data.latitude;
+                               this.position2.lat = res.data.longitude;
+                           }else if(res.data.type==='c'){
+                             this.position3.lng = res.data.latitude;
+                             this.position3.lat = res.data.longitude;
+                           }else if(res.data.type==='d'){
+                               this.position4.lng = res.data.latitude;
+                               this.position4.lat = res.data.longitude;
+                           }else if(res.data.type==='e'){
+                               this.position5.lng = res.data.latitude;
+                               this.position5.lat = res.data.longitude;
+                           }else if(res.data.type==='f'){
+                               this.position6.lng = res.data.latitude;
+                               this.position6.lat = res.data.longitude;
+                           }else if(res.data.type==='g'){
+                               this.position7.lng = res.data.latitude;
+                               this.position7.lat = res.data.longitude;
+                           }else {
+                               this.position8.lng = res.data.latitude;
+                               this.position8.lat = res.data.longitude;
                            }
                          })
                          .catch(err=>{
                            console.log(err)
                          })
-                 },1000);*/
-                this.center.lng = 116.405;
-                this.center.lat = 39.915;
-                this.position1.lng = 116.404;
-                this.position1.lat = 39.915;
-                this.position2.lng = 116.405;
-                this.position2.lat = 39.915;
-                this.position3.lng = 116.406;
-                this.position3.lat = 39.915;
-                this.position4.lng = 116.407;
-                this.position4.lat = 39.915;
-                this.position5.lng = 116.404;
-                this.position5.lat = 39.916;
-                this.position6.lng = 116.405;
-                this.position6.lat = 39.916;
-                this.position7.lng = 116.406;
-                this.position7.lat = 39.916;
-                this.position8.lng = 116.407;
-                this.position8.lat = 39.916;
+                 },1000);
+
             }
         },
         mounted() {

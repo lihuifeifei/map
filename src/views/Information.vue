@@ -141,15 +141,76 @@
         name: "Information.vue",
         data(){
             return{
-                object1:{'id':'2010','姿态':'站立','生命安全':'正常','所在楼层':'1楼'},
-                object2:{'id':'2011','姿态':'趴下','生命安全':'不正常','所在楼层':'2楼'},
-                object3:{'id':'2012','姿态':'站立','生命安全':'正常','所在楼层':'3楼'},
-                object4:{'id':'2013','姿态':'趴下','生命安全':'正常','所在楼层':'4楼'},
-                object5:{'id':'2014','姿态':'趴下','生命安全':'正常','所在楼层':'5楼'},
-                object6:{'id':'2015','姿态':'趴下','生命安全':'正常','所在楼层':'6楼'},
-                object7:{'id':'2016','姿态':'趴下','生命安全':'正常','所在楼层':'7楼'},
-                object8:{'id':'2017','姿态':'趴下','生命安全':'正常','所在楼层':'8楼'},
+               object1:null,
+               object2:null,
+               object3:null,
+               object4:null,
+               object5:null,
+               object6:null,
+               object7:null,
+               object8:null,
             }
+        },
+        mounted() {
+            this.$axios.get('/getDetails')
+                .then(res => {
+                    //先将对象转换成字符串，再全局替换字符串
+                    console.log(res.data);
+                    let str = JSON.stringify(res.data);
+                    let str1 = str.replace(/attitude/g,'姿态');
+                    let str2 = str1.replace(/idName/g,'姓名');
+                    let str3 = str2.replace(/isSafety/g,'生命安全');
+                    let str4 = str3.replace(/floor/g,'楼层');
+                    let str5 = str4.replace(/walk/g,'走');
+                    let str6 = str5.replace(/run/g,'跑');
+                    let str7 = str6.replace(/static/g,'静止');
+                    let str8 = str7.replace(/safe/g,'正常');
+                    let str9 = str8.replace(/danger/g,'危险');
+                    //将替换之后的字符串转换成JSON对象
+                    let obj = JSON.parse(str9);
+                    this.object1 = obj.a;
+                    this.object2 = obj.b;
+                    this.object3 = obj.c;
+                    this.object4 = obj.d;
+                    this.object5 = obj.e;
+                    this.object6 = obj.f;
+                    this.object7 = obj.g;
+                    this.object8 = obj.h;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            setInterval(()=>{
+                this.$axios.get('/getDetails')
+                    .then(res => {
+                        //先将对象转换成字符串，再全局替换字符串
+                        console.log(res.data);
+                        let str = JSON.stringify(res.data);
+                        let str1 = str.replace(/attitude/g,'姿态');
+                        let str2 = str1.replace(/idName/g,'姓名');
+                        let str3 = str2.replace(/isSafety/g,'生命安全');
+                        let str4 = str3.replace(/floor/g,'楼层');
+                        let str5 = str4.replace(/walk/g,'走');
+                        let str6 = str5.replace(/run/g,'跑');
+                        let str7 = str6.replace(/static/g,'静止');
+                        let str8 = str7.replace(/safe/g,'正常');
+                        let str9 = str8.replace(/danger/g,'危险');
+                        //将替换之后的字符串转换成JSON对象
+                        let obj = JSON.parse(str9);
+                        this.object1 = obj.a;
+                        this.object2 = obj.b;
+                        this.object3 = obj.c;
+                        this.object4 = obj.d;
+                        this.object5 = obj.e;
+                        this.object6 = obj.f;
+                        this.object7 = obj.g;
+                        this.object8 = obj.h;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            },10000);
+
         }
     }
 </script>

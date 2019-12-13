@@ -31,6 +31,11 @@ Vue.use(Loading);
 
 Vue.config.productionTip = false;
 
+
+// 设置请求的全局默认值
+axios.defaults.baseURL = 'http://192.168.1.110:8080';
+
+
 new Vue({
   router,
   render: h => h(App),

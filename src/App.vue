@@ -33,7 +33,7 @@
                     {name:'/map_spot',navItem:'坐标点'},
                     {name:'/map_line',navItem:'轨迹'},
                     {name:'/information',navItem:'个人信息'},
-
+                    {name:'/system',navItem:'系统设置'}
                 ]
             };
         },

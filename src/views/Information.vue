@@ -141,8 +141,8 @@
         name: "Information.vue",
         data(){
             return{
-               object1:null,
-               object2:null,
+               object1:{'姿态':'跑','生命体征':'安全'},
+               object2:{'姿态':'走','生命体征':'危险'},
                object3:null,
                object4:null,
                object5:null,

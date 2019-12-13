@@ -5,7 +5,9 @@ module.exports = {
         }
     },
     devServer:{
-        port: 8081
+        port: 8080,
+        // host: "localhost",
+        host:"192.168.1.103",
     }
 };
 
